@@ -1,10 +1,11 @@
 import '../styles/pages.style/Login.css';
 import { useState } from 'react';
-// import { useNavigate } from 'react-router';
+import axios from 'axios';
+import { useNavigate } from 'react-router';
 import Platanos from '../assets/img/Rectangle.png'; 
 
 const Login = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [body, setBody] = useState({phone_number:'', password: ''})
 
   const handleChange = ({target}) => {
@@ -15,10 +16,22 @@ const Login = () => {
     });
   }
 
+  const toMenu = () =>{
+    navigate("/crearUsuario");
+  }
+
   const toAccess = async (event) => {
-    event.preventDefault(); // Evita que el formulario se envíe y la página se recargue
+    event.preventDefault();
     try {
-      console.log(body);
+      const {phone_number, password} = body;
+      const url = `http://localhost:3000/users/${phone_number}/${password}`;
+      const response = await axios.get(url);
+      console.log(response.token);
+      if (response) {
+        toMenu();
+      }else{
+        console.log("Númeor de telefono o contaseña incorrecta");
+      }
     } catch (error) {
       console.log(error);
     }
