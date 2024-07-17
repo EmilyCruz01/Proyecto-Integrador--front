@@ -40,9 +40,11 @@ const Login = () => {
   return (
     <div className='loginComponent'>
       <div className='imagenLogin'>
-        <img src={Platanos} alt="Login Image" />
+        <a href="/"><img src={Platanos} alt="Login Image" /></a>
       </div>
       <div className='datosLogin'>
+      <div className='circulo-superiorLogin'></div>
+      <div className='circulo-inferiorLogin'></div>
         <h1>Bienvenido a <span className='highlight'>Fresh-Inspect</span></h1>
         <form onSubmit={toAccess}>
           <div className='inputGroup'>
@@ -52,7 +54,7 @@ const Login = () => {
             <input type='password' placeholder='Contraseña' value={body.password} name='password' onChange={handleChange}/>
           </div>
           <a href='/contraseniaOlvidada' className='forgotPassword'>¿Olvidaste tu contraseña?</a>
-          <button type='submit' className='loginButton'>Iniciar sesión</button>
+          <button type='submit' className='loginButton'><a href="/menu">Iniciar sesión</a></button>
         </form>
         <a href='/crearUsuario' className='createAccount'>Crear cuenta</a>
       </div>

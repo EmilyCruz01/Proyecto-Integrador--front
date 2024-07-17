@@ -57,7 +57,7 @@
     margin-right: 2%;
     padding: 2.5%;
     border: 1px solid var(--main-color-gris);
-    border-radius: 0.5rem;
+    border-radius: 15px;
     font-size: 1rem;
   }
   
@@ -69,15 +69,18 @@
     padding: 2.5%;
     background-color: var(--main-color-amarillo);
     border: none;
-    border-radius: 0.5rem;
+    border-radius: 15px;
     font-size: 1rem;
-    color: var(--main-color-negro);
+    font-weight: 600;
+    color: var(--main-bg-fondo);
     cursor: pointer;
     align-self: center; 
     width: 30%;
   }
   
   .botonCrear:hover {
-    background-color: #d4c215; 
+    background-color: var(--main-bg-fondo);
+    color: var(--main-color-amarillo);
+    border: 2px solid var(--main-color-amarillo);
   }
   
