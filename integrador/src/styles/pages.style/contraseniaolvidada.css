@@ -59,10 +59,15 @@
     border: none;
     border-radius: 0.5rem;
     font-size: 1rem;
-    color: var(--main-color-negro);
+    font-weight: 600;
+    color: var(--main-bg-fondo);
     cursor: pointer;
   }
   
   .botonContra:hover {
-    background-color: #ecdb42; 
+    background-color: var(--main-bg-fondo);
+    color: var(--main-color-amarillo);
+    border: 2px solid var(--main-color-amarillo);
+    font-weight: 600;
+    font-size:medium;
   }
