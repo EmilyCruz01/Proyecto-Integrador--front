@@ -1,5 +1,6 @@
 import '../styles/pages.style/Login.css';
 import Platanos from '../assets/img/Rectangle.png'; 
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   return (
@@ -18,10 +19,10 @@ const Login = () => {
           <div className='inputGroup'>
             <input type='password' placeholder='Contraseña' />
           </div>
-          <a href='/contraseniaOlvidada' className='forgotPassword'>¿Olvidaste tu contraseña?</a>
-          <button type='submit' className='loginButton'><a href="/menu">Iniciar sesión</a></button>
+          <Link to='/contraseniaOlvidada' className='forgotPassword'>¿Olvidaste tu contraseña?</Link>
+          <button type='submit' className='loginButton'><Link to="/menu" id='loginButton'>Iniciar sesión</Link></button>
         </form>
-        <a href='/crearUsuario' className='createAccount'>Crear cuenta</a>
+        <Link to='/crearUsuario' className='createAccount'>Crear cuenta</Link>
       </div>
     </div>
   );
