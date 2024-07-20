@@ -6,8 +6,7 @@ import ContraseniaOlvidada from "../pages/ContraseniaOlvidada.jsx";
 
 import Menu from '../pages/Menu.jsx';
 import Chequeo from "../pages/Chequeo.jsx";
-// import Chequeo from './pages/Chequeo';
-// import Monitoreo from './pages/Monitoreo';
+import Monitoreo from "../pages/Monitoreo.jsx";
 
 // import MenuGraficas from './pages/MenuGraficas';
 // import GraficaBarras from './pages/GraficaBarras';
@@ -21,6 +20,7 @@ const Rutas =() =>{
         <Route path="/contraseniaOlvidada" element={<ContraseniaOlvidada/>}/> 
         <Route path="/menu" element={<Menu/>}/>
         <Route path="/chequeo" element={<Chequeo/>}/>
+        <Route path="/monitoreo" element={<Monitoreo/>}/>
     </Routes>
     )
 }
