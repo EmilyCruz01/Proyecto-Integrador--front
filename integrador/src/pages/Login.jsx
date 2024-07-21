@@ -1,10 +1,11 @@
 import '../styles/pages.style/Login.css';
 import { useState } from 'react';
-// import { useNavigate } from 'react-router';
+import axios from 'axios';
+import { useNavigate } from 'react-router';
 import Platanos from '../assets/img/Rectangle.png'; 
 
 const Login = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [body, setBody] = useState({phone_number:'', password: ''})
 
   const handleChange = ({target}) => {
@@ -15,10 +16,22 @@ const Login = () => {
     });
   }
 
+  const toMenu = () =>{
+    navigate("/crearUsuario");
+  }
+
   const toAccess = async (event) => {
-    event.preventDefault(); // Evita que el formulario se envíe y la página se recargue
+    event.preventDefault();
     try {
-      console.log(body);
+      const {phone_number, password} = body;
+      const url = `http://localhost:3000/users/${phone_number}/${password}`;
+      const response = await axios.get(url);
+      console.log(response.token);
+      if (response) {
+        toMenu();
+      }else{
+        console.log("Númeor de telefono o contaseña incorrecta");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -27,9 +40,11 @@ const Login = () => {
   return (
     <div className='loginComponent'>
       <div className='imagenLogin'>
-        <img src={Platanos} alt="Login Image" />
+        <a href="/"><img src={Platanos} alt="Login Image" /></a>
       </div>
       <div className='datosLogin'>
+      <div className='circulo-superiorLogin'></div>
+      <div className='circulo-inferiorLogin'></div>
         <h1>Bienvenido a <span className='highlight'>Fresh-Inspect</span></h1>
         <form onSubmit={toAccess}>
           <div className='inputGroup'>
@@ -39,7 +54,7 @@ const Login = () => {
             <input type='password' placeholder='Contraseña' value={body.password} name='password' onChange={handleChange}/>
           </div>
           <a href='/contraseniaOlvidada' className='forgotPassword'>¿Olvidaste tu contraseña?</a>
-          <button type='submit' className='loginButton'>Iniciar sesión</button>
+          <button type='submit' className='loginButton'><a href="/menu">Iniciar sesión</a></button>
         </form>
         <a href='/crearUsuario' className='createAccount'>Crear cuenta</a>
       </div>

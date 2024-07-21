@@ -1,0 +1,24 @@
+.buttonMenuGraf {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 100%;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+  
+  .button-icon {
+    margin-bottom: 10%;
+  }
+  
+  .button-icon img {
+    width: 100%; 
+    height: 100%; 
+  }
+  
+  .button-text {
+    font-size: 100%;
+    font-weight: bold;
+    color: #000;
+  }

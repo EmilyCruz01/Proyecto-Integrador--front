@@ -1,0 +1,56 @@
+#logo {
+    color: var(--main-color-amarillo);
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 2rem; 
+  }
+  #salir{
+    position: absolute;
+    top: 20px;
+    right: 40px;
+  }
+  
+  .menu {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    position: relative; 
+    justify-content: center; 
+    align-items: center; 
+  }
+  
+  section {
+    display: flex;
+    gap: 8%;
+    justify-content: center; 
+    align-items: center;
+    width: 100%;
+  }
+  
+  section div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: box-shadow 0.3s ease-in-out; 
+    padding: 60px; 
+    margin: 40px; 
+  }
+  
+  section div:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25); 
+    border-radius: 10px; 
+  }
+  
+  section div img {
+    width: 100px; 
+    height: auto;
+  }
+  
+  section div h2 {
+    margin-top: 10px;
+    color: var(--main-color-negro);
+  }
+  
