@@ -10,12 +10,12 @@ const MenuGraficas = () => {
     <Navbar />
     <div className="buttons-container">
         <div>
-          <a href="../pages/GraficaCirculo.jsx">
+          <a href="/graficaCirculo">
         <Button icon={<img src={Madurez} alt="Madurez" />} text="Madurez" />
         </a>
         </div>
         <div>
-          <a href="../pages/GraficaBarras.jsx">
+          <a href="/graficaBarras">
         <Button icon={<img src={Peso} alt="Peso" />} text="Peso" />
         </a>
         </div>

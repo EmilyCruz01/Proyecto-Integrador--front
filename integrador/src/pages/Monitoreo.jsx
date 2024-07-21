@@ -1,5 +1,4 @@
-// archivo: src/pages/Monitoreo.js
-import React from 'react';
+
 import Navbar from '../components/Menu/Navbar';
 import Camara from '../components/Monitoreo/Camara';
 import Tabla from '../components/Monitoreo/Tabla';

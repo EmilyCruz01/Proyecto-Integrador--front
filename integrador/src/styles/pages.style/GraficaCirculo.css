@@ -1,0 +1,14 @@
+/* src/styles/Components.style/PieChart.css */
+
+.pie-chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; 
+  }
+  
+  .pie-chart-container canvas {
+    width: 80% !important; 
+    height: auto !important; 
+  }
+  
