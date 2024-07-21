@@ -126,10 +126,14 @@ a{
   color: var(--main-bg-fondo);
 }
 
+
 a:hover{
-  color: var(--main-color-amarillo);
+  color: var(--main-color-negro);
 }
 
+#loginButton:hover{
+  color: var(--main-color-amarillo)
+}
  
  
   
