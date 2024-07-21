@@ -8,7 +8,7 @@ import Menu from '../pages/Menu.jsx';
 // import Chequeo from './pages/Chequeo';
 // import Monitoreo from './pages/Monitoreo';
 
-// import MenuGraficas from './pages/MenuGraficas';
+import MenuGraficas from '../pages/MenuGraficas.jsx'
 // import GraficaBarras from './pages/GraficaBarras';
 // import GraficaCirculo from './pages/GraficaCirculo';
 
@@ -19,6 +19,7 @@ const Rutas =() =>{
         <Route path="/crearUsuario" element={<CrearUsuario/>}/>
         <Route path="/contraseniaOlvidada" element={<ContraseniaOlvidada/>}/> 
         <Route path="/menu" element={<Menu/>}/>
+        <Route path="/menuGraficas" element={<MenuGraficas/>}/>
     </Routes>
     )
 }

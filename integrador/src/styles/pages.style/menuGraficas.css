@@ -1,0 +1,11 @@
+.containerMenuGra {
+    text-align: center;
+  }
+  
+  .buttons-container {
+    display: flex;
+    
+    justify-content: center;
+    gap: 30%;
+    margin-top: 30%;
+  }
