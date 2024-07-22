@@ -1,0 +1,14 @@
+/* src/styles/Components.style/BarChart.css */
+
+.bar-chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; 
+  }
+  
+  .bar-chart-container canvas {
+    width: 80% !important; 
+    height: auto !important;
+  }
+  
