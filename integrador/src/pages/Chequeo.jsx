@@ -36,43 +36,66 @@ const Chequeo = () => {
     <div>
       <Navbar />
       <div className="chequeo">
+        <div>
         <section className="infoChequeo">
+          
           <h1 id="tituloChequeo">Chequeo</h1>
           <div>
-            <div className="camposChequeo">
-              <h3>Categoría:</h3>
-              <input 
-                type="text" 
-                name="peso" 
-                value={bananasData.classification} 
-                onChange={handleChange} 
-                className="datosChequeo"
-              />
-            </div>
+            
             <div className="camposChequeo">
               <h3>Fecha:</h3>
-              <input 
+             
+            </div>
+            <div className="camposChequeo">
+              <h3>Hora:</h3>
+              
+            </div>
+            <div className="camposChequeo">
+                <h3>Color:</h3>
+                
+            </div>
+            <div className="camposChequeo">
+              <h3>Categoría:</h3>
+             
+            </div>
+          </div>
+        </section>
+        </div>
+        <div className="DatosInput">
+       
+         <input 
                 type="text" 
                 name="categoria" 
                 value={bananasData.date} 
                 onChange={handleChange} 
                 className="datosChequeo"
               />
-            </div>
-            <div className="camposChequeo">
-              <h3>Hora:</h3>
-              <input 
+        <input 
                 type="text" 
                 name="fecha" 
                 value={bananasData.time} 
                 onChange={handleChange} 
                 className="datosChequeo"
               />
-            </div>
-          </div>
-        </section>
-        <button id='checarButton'>Checar</button>
+        <input
+             type="text"
+
+
+
+
+              />
+               <input 
+                type="text" 
+                name="peso" 
+                value={bananasData.classification} 
+                onChange={handleChange} 
+                className="datosChequeo"
+              />
+        </div>
+       
+        
       </div>
+      <button id='checarButton'>Checar</button>
     </div>
   );
 };
