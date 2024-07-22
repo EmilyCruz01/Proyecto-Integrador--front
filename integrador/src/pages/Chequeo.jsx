@@ -1,8 +1,21 @@
 import "../styles/pages.style/chequeo.css"
 import Navbar from "../components/Menu/Navbar"
-
+import { useEffect } from "react";
+import io from "socket.io-client";
 
 const Chequeo = () =>{
+    useEffect(() => {
+        const socket = io("https://socket-server.dreamapp.com.mx");
+    
+        socket.on("bananas", (data) => { 
+          alert("Recibido: ");
+          console.log(data);
+        });
+    
+        return () => {
+          socket.disconnect();
+        };
+      }, []);
     return(
         <div>
             <Navbar />
