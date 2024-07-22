@@ -23,6 +23,11 @@ align-items: center;
     display: flex;
     gap:10%;
 }
+.camposChequeo input {
+    width: 50%;
+    height: 50%;
+    margin-bottom: 5%;
+}
 
 .datosChequeo{
     color: grey;
