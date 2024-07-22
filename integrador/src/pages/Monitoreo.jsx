@@ -35,8 +35,12 @@ const Monitoreo = () => {
       <div className="monitoreo">
         <Camara src={videoSrc} />
       </div>
-      <Tabla titulo="Verdes" data={verdesData} />
-      <Tabla titulo="Maduros" data={madurosData} />
+     <div style={{display:'flex'}}>
+      <div style={{margin:'5%'}}><Tabla titulo="Verdes" data={verdesData} /></div>
+      <div style={{margin:'5%'}}><Tabla titulo="Maduros" data={madurosData} /></div>
+     </div>
+      
+      
     </div>
   );
 };
