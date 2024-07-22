@@ -13,7 +13,6 @@ const Tabla = ({ titulo, data }) => {
             <th>Temperatura</th>
             <th>Humedad</th>
             <th>Peso</th>
-            <th>Probabilidad</th>
           </tr>
         </thead>
         <tbody>
@@ -24,7 +23,6 @@ const Tabla = ({ titulo, data }) => {
               <td>{item.temperature}</td>
               <td>{item.humidity}</td>
               <td>{item.weight}</td>
-              <td>{item.probabilidad}</td>
             </tr>
           ))}
         </tbody>

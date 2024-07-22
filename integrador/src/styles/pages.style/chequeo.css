@@ -1,14 +1,18 @@
 .chequeo{
 display: flex;
-flex-direction: column;
-align-items: center;
+/* flex-direction: column;
+
+/* align-content: center;*/
+background-color: hsl(43, 27%, 90%);
+align-items: center; 
+padding: 2%;
+width: 100%;
 }
 .infoChequeo{
-    background-color: hsl(43, 27%, 90%);
     width:100%;
     height: auto;
     padding: 5% 20%;
-    margin-top: 30%;
+   
     display: flex;
     flex-direction: column;
 }
@@ -17,12 +21,18 @@ align-items: center;
     font-size: xx-large;
     justify-content: center;
     align-self: center;
+    align-content: center;
+    margin-left: 85%;
 }
 
 .camposChequeo{
     display: flex;
-    gap:10%;
 }
+/* .camposChequeo input {
+    margin: 5%;
+    width: 60%;
+    
+} */
 
 .datosChequeo{
     color: grey;
@@ -35,7 +45,8 @@ align-items: center;
     color: var(--main-bg-fondo);
     font-weight: 600;
     font-size: larger;
-    margin-top: 20px; 
+    margin-top: 10%;
+    margin-left: 20%; 
     align-self: flex-end;
 }
 
@@ -43,4 +54,12 @@ align-items: center;
 color: var(--main-color-amarillo);
 background-color: var(--main-bg-fondo);
 border: 2px solid var(--main-color-amarillo);
+}
+.DatosInput input{
+    margin: 11%;
+}
+.DatosInput{
+    margin-top: 31%;
+    flex-direction: column;
+    display: flex;
 }
