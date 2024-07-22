@@ -1,5 +1,5 @@
 import '../styles/pages.style/Login.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 import Platanos from '../assets/img/Rectangle.png'; 
@@ -8,6 +8,10 @@ import { Link } from 'react-router-dom';
 const Login = () => {
   const navigate = useNavigate();
   const [body, setBody] = useState({phone_number:'', password: ''})
+
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
 
   const handleChange = ({target}) => {
     const {name, value} = target;
@@ -18,20 +22,22 @@ const Login = () => {
   }
 
   const toMenu = () =>{
-    navigate("/crearUsuario");
+    navigate("/menu");
   }
 
   const toAccess = async (event) => {
     event.preventDefault();
     try {
       const {phone_number, password} = body;
-      const url = `http://localhost:3000/users/${phone_number}/${password}`;
+      const url = `https://api-fi.dreamapp.com.mx/users/${phone_number}/${password}`;
       const response = await axios.get(url);
-      console.log(response.token);
       if (response) {
+        const token = response.data.data.token;
+        localStorage.setItem('token', token);
+
         toMenu();
       }else{
-        console.log("Númeor de telefono o contaseña incorrecta");
+        console.log("Número de telefono o contaseña incorrecta");
       }
     } catch (error) {
       console.log(error);
@@ -55,7 +61,7 @@ const Login = () => {
             <input type='password' placeholder='Contraseña' value={body.password} name='password' onChange={handleChange}/>
           </div>
           <Link to='/contraseniaOlvidada' className='forgotPassword'>¿Olvidaste tu contraseña?</Link>
-          <button type='submit' className='loginButton'><Link to="/menu" id='loginButton'>Iniciar sesión</Link></button>
+          <button type='submit' className='loginButton'>Iniciar sesión</button>
         </form>
         <Link to='/crearUsuario' className='createAccount'>Crear cuenta</Link>
       </div>
