@@ -1,6 +1,7 @@
 
 import { BrowserRouter } from 'react-router-dom';
 import Rutas from './routes/pagina.routes.jsx';
+
 // import Nav from './components/Nav';
 //hola
 
