@@ -13,12 +13,11 @@ const Monitoreo = () => {
     const socket = io("https://socket-server.dreamapp.com.mx");
 
     socket.on("monitorings", (data) => {
-      alert("Dato recibido");
       console.log(data);
       if (data.box === "Maduros") {
-        setMadurosData(prevData => [...prevData, data]);
+        setMadurosData(prevData => [...prevData, data.data]);
       } else if (data.box === "Verdes") {
-        setVerdesData(prevData => [...prevData, data]);
+        setVerdesData(prevData => [...prevData, data.data]);
       }
     });
 
@@ -35,12 +34,10 @@ const Monitoreo = () => {
       <div className="monitoreo">
         <Camara src={videoSrc} />
       </div>
-     <div style={{display:'flex'}}>
-      <div style={{margin:'5%'}}><Tabla titulo="Verdes" data={verdesData} /></div>
-      <div style={{margin:'5%'}}><Tabla titulo="Maduros" data={madurosData} /></div>
-     </div>
-      
-      
+      <div style={{display: 'flex', justifyContent: 'center'}}>
+        <div style={{margin: '40%'}}><Tabla titulo="Verdes" data={verdesData} /></div>
+        <div style={{margin: '40%'}}><Tabla titulo="Maduros" data={madurosData} /></div>
+      </div>
     </div>
   );
 };
