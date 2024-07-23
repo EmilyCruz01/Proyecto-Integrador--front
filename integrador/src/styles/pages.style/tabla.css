@@ -1,20 +1,26 @@
 
 .tabla-container {
-  margin-top: 2%;
-  width: 250%;
-  height: 230%;
-  padding: 3%;
+  margin-top: 5%;
+  width: 150%;
+  height: 130%;
+  padding: 5%;
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(158, 156, 92, 0.882);
   display: flex;
   flex-direction: column;
 }
 
+.monitoreoTablas{
+  margin-right: 20%;
+}
 .containerInputs{
   gap: 10%;
 }
 
+.containerInputs input{
+border: none;
+}
 
 .pagination {
   display: flex;
