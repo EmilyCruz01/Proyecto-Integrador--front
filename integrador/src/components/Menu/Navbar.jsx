@@ -15,7 +15,7 @@ const Navbar = () => {
     </div>
     <div className="navbar-settings">
         <img src={Ajustes} alt="Settings" className="settings-icon" />
-        <img src={Salir} alt="Profile" className="profile-icon" />
+        <Link to={"/menu"}><img src={Salir} alt="Profile" className="profile-icon" /></Link>
       </div>
 
     </nav>
