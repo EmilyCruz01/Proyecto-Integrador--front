@@ -1,17 +1,71 @@
 import { Bar } from 'react-chartjs-2';
+import { useState, useEffect } from 'react';
+import moment from "moment-timezone";
 import 'chart.js/auto';
 import '../styles/pages.style/graficaBarras.css';
 import Navbar from '../components/Menu/Navbar';
+import axios from "axios";
 
 const graficaBarras = () => {
+  const [monitorings, setMonitorings] = useState([]);
+  const [totalWeightMaduros, setTotalWeightMaduros] = useState(0);
+  const [totalWeightVerdes, setTotalWeightVerdes] = useState(0);
+
+  const fetchData = async() => {
+    try {
+      const date = getDate();
+      const token = localStorage.getItem('token');
+      const config = {
+        headers: {
+          Authorization: token,
+        }
+      };
+      const url = `https://api-fi.dreamapp.com.mx/monitorings/${date}`
+      const monitoringsData = await axios.get(url, config);
+      console.log(monitoringsData.data.data);
+      setMonitorings(monitoringsData.data.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const getDate = () => {
+    const timezone = 'America/Mexico_City';
+    return moment().tz(timezone).format('YYYY-MM-DD');
+  };
+
+  const calculateWeights = () => {
+    let madurosWeight = 0;
+    let verdesWeight = 0;
+
+    monitorings.forEach(item => {
+      console.log(item.box);
+      if (item.box === 'Maduros') {
+        madurosWeight += item.weight;
+      } else if (item.box === 'Verdes') {
+        verdesWeight += item.weight;
+      }
+    });
+
+    setTotalWeightMaduros(madurosWeight);
+    setTotalWeightVerdes(verdesWeight);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+  useEffect(() => {
+    calculateWeights();
+  },)
+  
   const data = {
-    labels: ['Maduros', 'Pasados', 'Verdes'],
+    labels: ['Maduros','Verdes'],
     datasets: [
       {
         label: 'kg',
-        data: [1, 0.7, 1.1],
-        backgroundColor: ['#FFFF00', '#000000', '#00FF00'],
-        borderColor: ['#CCCC00', '#333333', '#00CC00'],
+        data: [totalWeightMaduros, totalWeightVerdes],
+        backgroundColor: ['#FFFF00', '#00FF00'],
+        borderColor: ['#CCCC00', '#333333'],
         borderWidth: 1,
       },
     ],
