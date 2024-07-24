@@ -5,16 +5,16 @@ import io from "socket.io-client";
 
 const Chequeo = () => {
   const [bananasData, setBananasData] = useState({
-    classification: '',
     date: '',
-    time: ''
+    time: '',
+    color: '',
+    classification: ''
   });
 
   useEffect(() => {
     const socket = io("https://socket-server.dreamapp.com.mx");
 
     socket.on("bananas", (data) => {
-      alert("Racibido")
       console.log(data);
       setBananasData(data);
     });
@@ -78,13 +78,13 @@ const Chequeo = () => {
                 className="datosChequeo"
               />
         <input
-             type="text"
-
-
-
-
+                type="text"
+                name="peso" 
+                value={bananasData.color} 
+                onChange={handleChange} 
+                className="datosChequeo"
               />
-               <input 
+        <input 
                 type="text" 
                 name="peso" 
                 value={bananasData.classification} 
@@ -92,7 +92,6 @@ const Chequeo = () => {
                 className="datosChequeo"
               />
         </div>
-       
         
       </div>
       <button id='checarButton'>Checar</button>

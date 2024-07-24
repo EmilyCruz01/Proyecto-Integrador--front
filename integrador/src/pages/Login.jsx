@@ -1,5 +1,5 @@
 import '../styles/pages.style/Login.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 import Platanos from '../assets/img/Rectangle.png'; 
@@ -8,10 +8,6 @@ import { Link } from 'react-router-dom';
 const Login = () => {
   const navigate = useNavigate();
   const [body, setBody] = useState({phone_number:'', password: ''})
-
-  useEffect(() => {
-    localStorage.clear();
-  }, []);
 
   const handleChange = ({target}) => {
     const {name, value} = target;
@@ -31,10 +27,11 @@ const Login = () => {
       const {phone_number, password} = body;
       const url = `https://api-fi.dreamapp.com.mx/users/${phone_number}/${password}`;
       const response = await axios.get(url);
+      console.log(response);
       if (response) {
         const token = response.data.data.token;
+        localStorage.clear();
         localStorage.setItem('token', token);
-
         toMenu();
       }else{
         console.log("Número de telefono o contaseña incorrecta");
