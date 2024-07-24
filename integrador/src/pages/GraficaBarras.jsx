@@ -22,7 +22,6 @@ const graficaBarras = () => {
       };
       const url = `https://api-fi.dreamapp.com.mx/monitorings/${date}`
       const monitoringsData = await axios.get(url, config);
-      console.log(monitoringsData.data.data);
       setMonitorings(monitoringsData.data.data);
     } catch (error) {
       console.error("Error fetching data:", error);

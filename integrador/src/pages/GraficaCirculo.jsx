@@ -7,6 +7,7 @@ import Navbar from '../components/Menu/Navbar';
 import axios from 'axios';
 
 const GraficaCirculo = () => {
+  const [bananasData, setBananasData] = useState([]);
   const [maduros, setMaduros] = useState([]);
   const [verdes, setVerdes] = useState([]);
   const [incomibles, setIncomibles] = useState([]);
@@ -62,6 +63,16 @@ const GraficaCirculo = () => {
     setProbabilities(probs);
   };
 
+  const classifyBananas = (data) => {
+    const maduros = data.filter(banana => banana.classification === 'Maduro');
+    const verdes = data.filter(banana => banana.classification === 'Verde');
+    const incomibles = data.filter(banana => banana.classification === 'Incomible');
+
+    setMaduros(maduros);
+    setVerdes(verdes);
+    setIncomibles(incomibles);
+  };
+
   const fetchData = async() => {
     try {
       const token = localStorage.getItem('token');
@@ -70,12 +81,9 @@ const GraficaCirculo = () => {
           Authorization: token,
         }
       };
-      const madurosResponse = await axios.get('https://api-fi.dreamapp.com.mx/bananas/Maduro', config);
-      const verdesResponse = await axios.get('https://api-fi.dreamapp.com.mx/bananas/Verde', config);
-      const incomiblesResponse = await axios.get('https://api-fi.dreamapp.com.mx/bananas/Incomible', config);
-      setMaduros(madurosResponse.data.data);
-      setVerdes(verdesResponse.data.data);
-      setIncomibles(incomiblesResponse.data.data);
+      const madurosResponse = await axios.get('https://api-fi.dreamapp.com.mx/bananas', config);
+      setBananasData(madurosResponse.data.data)
+      classifyBananas(madurosResponse.data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
