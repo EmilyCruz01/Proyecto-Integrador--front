@@ -21,7 +21,7 @@ const Monitoreo = () => {
           Authorization: token,
         }
       };
-      const url = `https://api-fi.dreamapp.com.mx/monitorings/${date}`
+      const url = `http://localhost:3000/monitorings/${date}`
       const response = await axios.get(url, config);
       const monitoringsData = response.data.data;
 
@@ -43,7 +43,7 @@ const Monitoreo = () => {
   useEffect(() => {
     getAllMonitorings();
 
-    const socket = io("https://socket-server.dreamapp.com.mx");
+    const socket = io("http://localhost:3001");
 
     socket.on("monitorings", (data) => {
       console.log(data);

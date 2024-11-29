@@ -16,7 +16,7 @@ const CrearCuenta = () => {
   const createAccount = async() => {
     event.preventDefault();
     try {
-      const url = `https://api-fi.dreamapp.com.mx/users`;
+      const url = `http://localhost:3000/users`;
       const response = await axios.post(url, body);
       if (response) {
         alert("Cuenta creada exitosamente");

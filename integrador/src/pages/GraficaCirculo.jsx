@@ -81,7 +81,7 @@ const GraficaCirculo = () => {
           Authorization: token,
         }
       };
-      const madurosResponse = await axios.get('https://api-fi.dreamapp.com.mx/bananas', config);
+      const madurosResponse = await axios.get('http://localhost:3000/bananas', config);
       setBananasData(madurosResponse.data.data)
       classifyBananas(madurosResponse.data.data);
     } catch (error) {

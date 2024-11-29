@@ -25,7 +25,7 @@ const Login = () => {
     event.preventDefault();
     try {
       const {phone_number, password} = body;
-      const url = `https://api-fi.dreamapp.com.mx/users/${phone_number}/${password}`;
+      const url = `http://localhost:3000/users/${phone_number}/${password}`;
       const response = await axios.get(url);
       console.log(response);
       if (response) {
@@ -57,7 +57,7 @@ const Login = () => {
           <div className='inputGroup'>
             <input type='password' placeholder='Contraseña' value={body.password} name='password' onChange={handleChange}/>
           </div>
-          <Link to='/contraseniaOlvidada' className='forgotPassword'>¿Olvidaste tu contraseña?</Link>
+          {/* <Link to='/contraseniaOlvidada' className='forgotPassword'>¿Olvidaste tu contraseña?</Link> */}
           <button type='submit' className='loginButton'>Iniciar sesión</button>
         </form>
         <Link to='/crearUsuario' className='createAccount'>Crear cuenta</Link>

@@ -20,7 +20,7 @@ const graficaBarras = () => {
           Authorization: token,
         }
       };
-      const url = `https://api-fi.dreamapp.com.mx/monitorings/${date}`
+      const url = `http://localhost:3000/monitorings/${date}`
       const monitoringsData = await axios.get(url, config);
       setMonitorings(monitoringsData.data.data);
     } catch (error) {

@@ -3,6 +3,8 @@ import Navbar from "../components/Menu/Navbar";
 import { useState, useEffect } from "react";
 import io from "socket.io-client";
 
+const socket = io("http://localhost:3001");
+
 const Chequeo = () => {
   const [bananasData, setBananasData] = useState({
     date: '',
@@ -12,16 +14,10 @@ const Chequeo = () => {
   });
 
   useEffect(() => {
-    const socket = io("https://socket-server.dreamapp.com.mx");
-
     socket.on("bananas", (data) => {
-      console.log(data);
+      console.log("Received data:", data);
       setBananasData(data);
     });
-
-    return () => {
-      socket.disconnect();
-    };
   }, []);
 
   const handleChange = (e) => {
