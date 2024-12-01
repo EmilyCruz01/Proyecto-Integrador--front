@@ -3,7 +3,6 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 import Platanos from '../assets/img/Rectangle.png'; 
-import { Link } from 'react-router-dom';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -57,10 +56,9 @@ const Login = () => {
           <div className='inputGroup'>
             <input type='password' placeholder='Contraseña' value={body.password} name='password' onChange={handleChange}/>
           </div>
-          <Link to='/contraseniaOlvidada' className='forgotPassword'>¿Olvidaste tu contraseña?</Link>
           <button type='submit' className='loginButton'>Iniciar sesión</button>
         </form>
-        <Link to='/crearUsuario' className='createAccount'>Crear cuenta</Link>
+       
       </div>
     </div>
   );
