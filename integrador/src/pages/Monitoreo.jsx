@@ -5,7 +5,6 @@ import moment from "moment-timezone";
 import io from "socket.io-client";
 import axios from "axios";
 
-// Web Worker
 const worker = new Worker(new URL("../workers/WorkerPlatano.js", import.meta.url));
 
 const Monitoreo = () => {

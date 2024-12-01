@@ -1,10 +1,12 @@
 import { Pie } from 'react-chartjs-2';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import 'chart.js/auto';
 import '../styles/pages.style/GraficaCirculo.css';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import Navbar from '../components/Menu/Navbar';
 import axios from 'axios';
+
+import WorkerCalculation from '../workers/WorkerCalculation?worker';
 
 const GraficaCirculo = () => {
   const [bananasData, setBananasData] = useState([]);
@@ -15,77 +17,60 @@ const GraficaCirculo = () => {
   const [inputVerdes, setInputVerdes] = useState(0);
   const [inputIncomibles, setInputIncomibles] = useState(0);
   const [inputMuestra, setInputMuestra] = useState(0);
-  const [probabilities, setProbabilities] = useState({ maduros: 0, verdes: 0, incomibles: 0});
+  const [probabilities, setProbabilities] = useState({ maduros: 0, verdes: 0, incomibles: 0 });
 
-  const factorial = (n) => {
-    if (n <= 1) return 1;
-    return n * factorial(n - 1);
-  };
+  const workerRef = useRef();
 
-  const calculateProb = () => {
-    const total = maduros.length + verdes.length + incomibles.length;
+  useEffect(() => {
+    workerRef.current = new WorkerCalculation();
 
-    if (total === 0) {
-      return {
-        maduros: 0,
-        verdes: 0,
-        incomibles: 0
-      };
-    }
-
-    const probMaduros = (maduros.length / total) * 100;
-    const probVerdes = (verdes.length / total) * 100;
-    const probIncomibles = (incomibles.length / total) * 100;
-
-    return {
-      maduros: probMaduros.toFixed(2),
-      verdes: probVerdes.toFixed(2),
-      incomibles: probIncomibles.toFixed(2)
+    workerRef.current.onmessage = (e) => {
+      const { type, result } = e.data;
+      if (type === 'calculateProb') {
+        setProbabilities(result);
+        alert(`La probabilidad multinomial es: ${result.maduros}%`);
+      }
     };
-  };
 
-  const calculateMultinomial = () => {
-    const multinomialProb = (
-      (factorial(inputMuestra) /
-      (factorial(inputMaduros) * factorial(inputVerdes) * factorial(inputIncomibles))) *
-      Math.pow(probabilities.maduros, inputMaduros) *
-      Math.pow(probabilities.verdes, inputVerdes) *
-      Math.pow(probabilities.incomibles, inputIncomibles)
-    );
-    const truncatedMultinomialProb = parseFloat(multinomialProb.toString().substring(0, 4));
-    const multinomialProbPercentage = (truncatedMultinomialProb / 100);
-
-    alert(`La probabilidad multinomial es: ${multinomialProbPercentage}%`);
-  }
+    return () => {
+      workerRef.current.terminate();
+    };
+  }, []);
 
   const handleCalculate = () => {
-    const probs = calculateProb();
-    setProbabilities(probs);
+    workerRef.current.postMessage({
+      type: 'calculateProb',
+      payload: {
+        maduros: maduros.length,
+        verdes: verdes.length,
+        incomibles: incomibles.length,
+      },
+    });
   };
 
   const classifyBananas = (data) => {
-    const maduros = data.filter(banana => banana.classification === 'Maduro');
-    const verdes = data.filter(banana => banana.classification === 'Verde');
-    const incomibles = data.filter(banana => banana.classification === 'Incomible');
+    const maduros = data.filter((banana) => banana.classification === 'Maduro');
+    const verdes = data.filter((banana) => banana.classification === 'Verde');
+    const incomibles = data.filter((banana) => banana.classification === 'Incomible');
 
     setMaduros(maduros);
     setVerdes(verdes);
     setIncomibles(incomibles);
   };
 
-  const fetchData = async() => {
+  const fetchData = async () => {
     try {
       const token = localStorage.getItem('token');
       const config = {
         headers: {
           Authorization: token,
-        }
+        },
       };
       const madurosResponse = await axios.get('https://api-fi.dreamapp.com.mx/bananas', config);
-      setBananasData(madurosResponse.data.data)
+      setBananasData(madurosResponse.data.data);
       classifyBananas(madurosResponse.data.data);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error('Error fetching data:', error);
     }
   };
 
@@ -153,7 +138,9 @@ const GraficaCirculo = () => {
               <h3>Muestra:</h3>
               <input type="number" value={inputMuestra} onChange={(e) => setInputMuestra(Number(e.target.value))} />
             </div>
-            <button className='botonGrafica' onClick={calculateMultinomial}> Calcular</button>
+            <button className="botonGrafica" onClick={handleCalculate}>
+              Calcular
+            </button>
           </div>
           <div>
             <div className='titulo2Circulo'><h2>Probabilidad:</h2></div>
